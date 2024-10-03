@@ -1,8 +1,8 @@
 {
-  "name": "@leakeddave/my-jsx-package",
-  "homepage": "https://github.com/LeakedDave/my-jsx-package",
-  "version": "1.0.3",
-  "description": "",
+  "name": "@daveyplate/tailwind-drag-dropzone",
+  "homepage": "https://github.com/daveyplate/tailwind-drag-dropzone",
+  "version": "1.0.0",
+  "description": "Wraps any component with a drag and drop zone for file uploads",
   "module": "dist/index",
   "types": "dist/index",
   "files": [
@@ -13,7 +13,17 @@
     "build": "babel src --out-dir dist && npx tsc",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "tailwind",
+    "tailwindcss",
+    "drag",
+    "drop",
+    "zone",
+    "dropzone",
+    "file",
+    "upload"
+  ],
   "author": "LeakedDave",
   "license": "ISC",
   "devDependencies": {
@@ -21,10 +31,17 @@
     "@babel/core": "^7.25.7",
     "@babel/preset-env": "^7.25.7",
     "@babel/preset-react": "^7.25.7",
+    "@types/react": "^18.3.11",
     "typescript": "^5.6.2"
   },
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.1.5",
+    "clsx": "^2.1.1",
+    "react-dropzone": "^14.2.9",
+    "tailwind-merge": "^2.5.2"
   }
 }
