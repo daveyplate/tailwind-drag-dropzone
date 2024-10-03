@@ -1,7 +1,7 @@
 {
   "name": "@daveyplate/tailwind-drag-dropzone",
   "homepage": "https://github.com/daveyplate/tailwind-drag-dropzone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wraps any component with a drag and drop zone for file uploads",
   "module": "dist/index",
   "types": "dist/index",
