@@ -85,7 +85,7 @@ export function DragDropzone({
             <div className={cn("absolute inset-0 flex gap-4 items-center justify-center",
                 isDragActive ? "opacity-1" : "opacity-0"
             )}>
-                <CloudArrowUpIcon className={cn(size == "xl" ? "size-12" : size == "lg" ? "size-10" : size == "sm" ? "size-6" : "size-8")} />
+                <CloudArrowUpIcon className={cn(size == "xl" ? "w-12" : size == "lg" ? "w-10" : size == "sm" ? "w-6" : "w-8")} />
 
                 <h6 className={cn("text-center",
                     size == "xl" ? "text-2xl" : size == "lg" ? "text-xl" : size == "sm" ? "text-base" : "text-lg"
