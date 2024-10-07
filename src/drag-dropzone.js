@@ -72,17 +72,17 @@ export function DragDropzone({
             {...getRootProps()}
             tabIndex={null}
             {...props}
-            className={cn("pointer-events-none", props.className)}
+            className={cn("pointer-events-none relative", className)}
         >
             <input {...getInputProps()} />
 
-            <div className={cn(className, "transition-opacity pointer-events-auto flex flex-col",
+            <div className={cn(className, "transition-opacity pointer-events-auto",
                 isDragActive ? "opacity-0" : "opacity-1"
             )}>
                 {children}
             </div>
 
-            <div className={cn("absolute inset-0 flex gap-4 items-center justify-center",
+            <div className={cn("absolute inset-0 flex gap-4 items-center justify-center transition-opacity",
                 isDragActive ? "opacity-1" : "opacity-0"
             )}>
                 <CloudArrowUpIcon className={cn(size == "xl" ? "w-12" : size == "lg" ? "w-10" : size == "sm" ? "w-6" : "w-8")} />
