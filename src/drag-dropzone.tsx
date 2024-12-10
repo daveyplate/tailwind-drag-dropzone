@@ -13,13 +13,13 @@ function cn(...inputs: ClassValue[]) {
 interface DragDropzoneProps {
     children: React.ReactNode
     size?: "sm" | "md" | "lg" | "xl"
-    className?: ClassValue
+    className?: ClassValue | null
     label?: string
-    openRef: React.RefObject<() => void>
-    accept?: { [key: string]: string[] }
+    openRef?: React.RefObject<(() => void) | null>
+    accept?: Record<string, string[]>
     maxFiles?: number
-    onFiles?: (files: File[]) => void
-    onError?: (error: Error) => void
+    onFiles?: ((files: File[]) => void) | null
+    onError?: ((error: Error) => void) | null
 }
 
 
@@ -72,8 +72,10 @@ export function DragDropzone({
     })
 
     useEffect(() => {
+        if (!openRef) return
+
         openRef.current = open
-    }, [])
+    }, [openRef])
 
     return (
         <div
