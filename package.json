@@ -10,8 +10,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "babel src --out-dir dist && npx tsc",
-    "prepublishOnly": "npm run build"
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "rm -rf dist && npm run build"
   },
   "keywords": [
     "react",
@@ -24,19 +25,17 @@
     "file",
     "upload"
   ],
-  "author": "LeakedDave",
+  "author": "daveycodez",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.25.7",
-    "@babel/core": "^7.25.7",
-    "@babel/preset-env": "^7.25.7",
-    "@babel/preset-react": "^7.25.7",
     "@types/react": "^19.0.1",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "react": "file:../daveyplate/node_modules/react",
+    "react-dom": "file:../daveyplate/node_modules/react-dom"
   },
   "peerDependencies": {
-    "react": ">=18.3.1",
-    "react-dom": ">=18.3.1"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "@heroicons/react": ">=2.1.5",

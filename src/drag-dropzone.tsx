@@ -5,14 +5,23 @@ import { twMerge } from 'tailwind-merge'
 import { CloudArrowUpIcon } from "@heroicons/react/24/solid"
 import { useDropzone } from "react-dropzone"
 
-/**
- * Merge class names using twMerge and clsx
- * @param  {...ClassValue} inputs 
- * @returns {string} - Merged class names
- */
-export function cn(...inputs) {
+function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
 }
+
+
+interface DragDropzoneProps {
+    children: React.ReactNode
+    size?: "sm" | "md" | "lg" | "xl"
+    className?: ClassValue
+    label?: string
+    openRef: React.RefObject<() => void>
+    accept?: { [key: string]: string[] }
+    maxFiles?: number
+    onFiles?: (files: File[]) => void
+    onError?: (error: Error) => void
+}
+
 
 /**
  * Drag and drop zone for uploading files
@@ -26,7 +35,6 @@ export function cn(...inputs) {
  * @param {number} [props.maxFiles=1] - Maximum number of files to accept
  * @param {(files: File[]) => void} [props.onFiles] - Callback when files are dropped
  * @param {(error: Error) => void} [props.onError] - Callback when an error occurs
- * @returns {JSX.Element} DragDropzone Component
  */
 export function DragDropzone({
     children,
@@ -39,8 +47,8 @@ export function DragDropzone({
     onFiles,
     onError,
     ...props
-}) {
-    const onDrop = useCallback(acceptedFiles => {
+}: DragDropzoneProps) {
+    const onDrop = useCallback((acceptedFiles: File[]) => {
         if (onFiles) {
             onFiles(acceptedFiles)
         }
@@ -58,7 +66,7 @@ export function DragDropzone({
         },
         onDropRejected: (fileRejections) => {
             const errorMessage = 'Invalid file type' + (fileRejections.length > 1 ? 's' : '')
-            const error = { message: errorMessage, fileRejections }
+            const error = new Error(errorMessage)
             if (onError) onError(error)
         }
     })
@@ -70,7 +78,7 @@ export function DragDropzone({
     return (
         <div
             {...getRootProps()}
-            tabIndex={null}
+            tabIndex={-1}
             {...props}
             className={cn("pointer-events-none relative", className)}
         >
@@ -83,7 +91,7 @@ export function DragDropzone({
             </div>
 
             <div className={cn("absolute inset-0 flex gap-4 items-center justify-center transition-opacity",
-                isDragActive ? "opacity-1" : "opacity-0"
+                isDragActive ? "opacity-1 bg-background/70 backdrop-blur-xl" : "opacity-0"
             )}>
                 <CloudArrowUpIcon className={cn(size == "xl" ? "w-12" : size == "lg" ? "w-10" : size == "sm" ? "w-6" : "w-8")} />
 
